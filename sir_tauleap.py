@@ -58,7 +58,7 @@ def tau_leap_sir(beta, alpha, N, I0, tau=0.5, t_max=120.0, rng=None):
     # 初始狀態
     S[0] = N - I0
     I[0] = I0
-    R[0] = 0.000000
+    R[0] = 0.0000000000000
 
     for k in range(n_steps):
         s, i, r = S[k], I[k], R[k]
