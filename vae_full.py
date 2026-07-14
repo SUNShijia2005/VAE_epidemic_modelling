@@ -85,7 +85,7 @@ class Scaler:
 # 2) shared embedding——与基线一致
 # ============================================================================
 class Embedding(nn.Module):
-    def __init__(self, t_len=180, n_age=6, hh_len=27, emb_dim=64):
+    def __init__(self, t_len=180, n_age=6, hh_len=27, emb_dim=64, dropout=0.0):
         super().__init__()
         self.inc_conv = nn.Sequential(
             nn.Conv1d(n_age, 32, kernel_size=5, stride=2, padding=2), nn.ReLU(),
@@ -98,7 +98,8 @@ class Embedding(nn.Module):
             nn.Linear(hh_len, 64), nn.ReLU(),
             nn.Linear(64, 32), nn.ReLU(),
         )
-        self.fuse = nn.Sequential(nn.Linear(64 + 32, emb_dim), nn.ReLU())
+        self.fuse = nn.Sequential(nn.Linear(64 + 32, emb_dim), nn.ReLU(),
+                                  nn.Dropout(dropout))
 
     def forward(self, inc, hh):
         c = self.inc_conv(inc.transpose(1, 2)).squeeze(-1)
@@ -112,12 +113,13 @@ class Embedding(nn.Module):
 #    共享 context = base([emb, z])；每个维度一个小头，吃 [context, θ_{<k}]。
 # ============================================================================
 class ARDecoder(nn.Module):
-    def __init__(self, theta_dim, emb_dim, z_dim, hidden=128, head_hidden=64):
+    def __init__(self, theta_dim, emb_dim, z_dim, hidden=128, head_hidden=64,
+                 dropout=0.0):
         super().__init__()
         self.theta_dim = theta_dim
         self.base = nn.Sequential(
-            nn.Linear(emb_dim + z_dim, hidden), nn.ReLU(),
-            nn.Linear(hidden, hidden), nn.ReLU(),
+            nn.Linear(emb_dim + z_dim, hidden), nn.ReLU(), nn.Dropout(dropout),
+            nn.Linear(hidden, hidden), nn.ReLU(), nn.Dropout(dropout),
         )
         # 第 k 个头：输入 [context(hidden), θ_{<k}(k 维)] -> (mu_k, logvar_k)
         self.heads = nn.ModuleList([
@@ -154,7 +156,7 @@ class ARDecoder(nn.Module):
 
 class CVAE(nn.Module):
     def __init__(self, theta_dim, ar_order, emb_dim=64, z_dim=16, hidden=128,
-                 inc_shape=(180, 6), hh_len=27, use_data_dec=True):
+                 inc_shape=(180, 6), hh_len=27, use_data_dec=True, dropout=0.0):
         super().__init__()
         self.theta_dim, self.z_dim = theta_dim, z_dim
         self.ar_order = list(ar_order)
@@ -166,14 +168,14 @@ class CVAE(nn.Module):
         self.hh_len = hh_len
         self.use_data_dec = use_data_dec
 
-        self.embed = Embedding(emb_dim=emb_dim)
+        self.embed = Embedding(emb_dim=emb_dim, dropout=dropout)
         self.enc = nn.Sequential(
-            nn.Linear(theta_dim + emb_dim, hidden), nn.ReLU(),
-            nn.Linear(hidden, hidden), nn.ReLU(),
+            nn.Linear(theta_dim + emb_dim, hidden), nn.ReLU(), nn.Dropout(dropout),
+            nn.Linear(hidden, hidden), nn.ReLU(), nn.Dropout(dropout),
         )
         self.enc_mu = nn.Linear(hidden, z_dim)
         self.enc_logvar = nn.Linear(hidden, z_dim)
-        self.dec = ARDecoder(theta_dim, emb_dim, z_dim, hidden)
+        self.dec = ARDecoder(theta_dim, emb_dim, z_dim, hidden, dropout=dropout)
 
         # ---- 数据 decoder p(x|z)：proposal 目标的第三项(辅助，keeps z informative) ----
         # 从 z 重建标准化后的 x = [incidence 展平, hh_finalsize]，对角高斯。
@@ -225,7 +227,7 @@ def kl_per_dim(mu, logvar):
 # 4) 训练：free-bits KL（每潜维保底配额）+ beta warmup
 # ============================================================================
 def train(model, tr, va, epochs, batch, lr, beta_kl, kl_warmup, free_bits,
-          patience, min_delta, recon_x, device):
+          patience, min_delta, recon_x, device, weight_decay=0.0):
     """训练 + 早停。
 
     早停照搬地震 NPP 代码那三条：盯 val loss、patience 轮无改善即停、回退到最优权重。
@@ -238,7 +240,7 @@ def train(model, tr, va, epochs, batch, lr, beta_kl, kl_warmup, free_bits,
     """
     th_tr, inc_tr, hh_tr = tr
     th_va, inc_va, hh_va = va
-    opt = torch.optim.Adam(model.parameters(), lr=lr)
+    opt = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
     n = th_tr.shape[0]
     hist = {"train": [], "val": []}
     ar = model.ar_order
@@ -338,6 +340,11 @@ def main():
     ap.add_argument("--min_delta", type=float, default=0.0, help="视为改善的最小降幅")
     ap.add_argument("--recon_x", type=float, default=0.1,
                     help="数据 decoder p(x|z) 的权重(proposal 第三项，optional)；0 关闭")
+    ap.add_argument("--weight_decay", type=float, default=0.0,
+                    help="Adam L2 正则(可选)；默认关。实验证明本框架有 restore-best，"
+                         "过拟合已被吸收，开正则反而降 corr(尤其 dropout 伤 q)")
+    ap.add_argument("--dropout", type=float, default=0.0,
+                    help="encoder/decoder/embedding 的 dropout(可选)；默认关，理由同上")
     ap.add_argument("--z_dim", type=int, default=16)
     ap.add_argument("--n_eval", type=int, default=1000)
     ap.add_argument("--n_draws", type=int, default=1000)
@@ -395,13 +402,15 @@ def main():
     # ---- 训练 ----
     print(f"[train] epochs<={args.epochs} z_dim={args.z_dim} "
           f"beta_kl={args.beta_kl} free_bits={args.free_bits} "
-          f"recon_x={args.recon_x} patience={args.patience}(warmup 后生效)")
+          f"recon_x={args.recon_x} patience={args.patience}(warmup 后生效) "
+          f"weight_decay={args.weight_decay} dropout={args.dropout}")
     model = CVAE(theta_dim=theta.shape[1], ar_order=ar_order, z_dim=args.z_dim,
                  inc_shape=inc.shape[1:], hh_len=hh.shape[1],
-                 use_data_dec=(args.recon_x > 0)).to(device)
+                 use_data_dec=(args.recon_x > 0), dropout=args.dropout).to(device)
     hist, best_epoch = train(model, tr_t, va_t, args.epochs, args.batch, args.lr,
                              args.beta_kl, args.kl_warmup, args.free_bits,
-                             args.patience, args.min_delta, args.recon_x, device)
+                             args.patience, args.min_delta, args.recon_x, device,
+                             weight_decay=args.weight_decay)
 
     # ---- 评估（与基线完全一致）----
     print(f"[eval] test={len(te)} 条, 每条抽 {args.n_draws} 个 posterior 样本 ...")
