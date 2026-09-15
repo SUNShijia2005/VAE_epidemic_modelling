@@ -63,3 +63,9 @@ Notebook 中的干预强度扫描是独立实验：每组 3,000/400/400 条曲�
 
 `vae_full.py` 和 `simulate_data/` 属于旧 conditional VAE 项目，没有在本次调整。
 历史 checkpoint 的诊断加载保留旧观测种子偏移 12345 和旧验证集划分，避免用新规则重建旧数据。
+
+## Project background
+
+Earlier work explored parameter inference for a stochastic household SIR model, using a household epidemic simulator, an ABC-MCMC baseline, and a VAE trained on simulated data. The current aligned experiment above uses a homogeneous SIR mechanism.
+
+Tools: Python, PyTorch, NumPy, Pandas.
