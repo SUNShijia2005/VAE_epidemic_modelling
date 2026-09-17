@@ -1,0 +1,30 @@
+{
+  "0": {
+    "8": {
+      "loss_mean": 340.5212516784668,
+      "loss_sd": 0.044426043062015655,
+      "alpha_mean_gradient_noise_rms": 1.849099040031433,
+      "mean_alpha_gradient_norm": 8.462319374084473
+    },
+    "32": {
+      "loss_mean": 340.5085401535034,
+      "loss_sd": 0.01945524505771006,
+      "alpha_mean_gradient_noise_rms": 0.8628450036048889,
+      "mean_alpha_gradient_norm": 8.44137191772461
+    }
+  },
+  "1": {
+    "8": {
+      "loss_mean": 342.4312114715576,
+      "loss_sd": 0.04436779685879547,
+      "alpha_mean_gradient_noise_rms": 1.7419894933700562,
+      "mean_alpha_gradient_norm": 1.995786190032959
+    },
+    "32": {
+      "loss_mean": 342.4207110404968,
+      "loss_sd": 0.020141683667085762,
+      "alpha_mean_gradient_noise_rms": 0.8879128098487854,
+      "mean_alpha_gradient_norm": 2.0451645851135254
+    }
+  }
+}

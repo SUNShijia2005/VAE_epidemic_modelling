@@ -1,0 +1,178 @@
+{
+  "selection": {
+    "criterion": "validation ELBO only, no true labels or posterior reference",
+    "selected": "curved_hybrid",
+    "candidates": {
+      "curved_hybrid": {
+        "val_loss": 349.47459228515623,
+        "epoch": 81
+      },
+      "continued_gaussian": {
+        "val_loss": 349.508169921875,
+        "epoch": 100
+      },
+      "cumulative_gaussian": {
+        "val_loss": 349.50338232421876,
+        "epoch": 100
+      }
+    },
+    "test_seed": 10103,
+    "n_test": 1000
+  },
+  "models": {
+    "previous_gaussian": {
+      "metrics": {
+        "beta": {
+          "corr": 0.9787611609994382,
+          "rmse": 0.0183849036693573,
+          "bias": 0.0009256966295652092,
+          "cover90": 0.841
+        },
+        "alpha": {
+          "corr": 0.8679767469743658,
+          "rmse": 0.021113038063049316,
+          "bias": 0.0006203504744917154,
+          "cover90": 0.844
+        },
+        "R0": {
+          "corr": 0.9731718491740408,
+          "rmse": 0.13885562121868134,
+          "bias": -0.005462482571601868,
+          "cover90": 0.845
+        }
+      },
+      "joint_cover90": 0.8389999866485596,
+      "mean_abs_curvature": 0.0,
+      "checkpoint": "results_elbo/hybrid/model.pt"
+    },
+    "selected_hybrid": {
+      "metrics": {
+        "beta": {
+          "corr": 0.9788139551629461,
+          "rmse": 0.018371088430285454,
+          "bias": 0.001103476039133966,
+          "cover90": 0.863
+        },
+        "alpha": {
+          "corr": 0.8691464475460423,
+          "rmse": 0.02103744074702263,
+          "bias": 0.0008391663432121277,
+          "cover90": 0.863
+        },
+        "R0": {
+          "corr": 0.973424177113321,
+          "rmse": 0.13815055787563324,
+          "bias": -0.005313971545547247,
+          "cover90": 0.859
+        }
+      },
+      "joint_cover90": 0.8569999933242798,
+      "mean_abs_curvature": 0.018084915354847908,
+      "checkpoint": {
+        "config": {
+          "checkpoint": "results_elbo/hybrid/model.pt",
+          "out": "results_elbo/curved_hybrid",
+          "epochs": 100,
+          "seed": 27
+        },
+        "scale": 0.5,
+        "selected_epoch": 81,
+        "val_loss": 349.47459228515623,
+        "train_seed": 7101,
+        "validation_seed": 7102,
+        "objective": "ordinary ELBO, analytic unit-Jacobian curved posterior KL; no labels/teacher"
+      }
+    },
+    "curved_matched": {
+      "metrics": {
+        "beta": {
+          "corr": 0.9787074402134327,
+          "rmse": 0.018407583236694336,
+          "bias": 0.0009156519081443548,
+          "cover90": 0.864
+        },
+        "alpha": {
+          "corr": 0.8689337425060342,
+          "rmse": 0.021052144467830658,
+          "bias": 0.0007619928801432252,
+          "cover90": 0.874
+        },
+        "R0": {
+          "corr": 0.9733465318243982,
+          "rmse": 0.13816513121128082,
+          "bias": -0.0047157383523881435,
+          "cover90": 0.867
+        }
+      },
+      "joint_cover90": 0.8610000014305115,
+      "mean_abs_curvature": 0.018155883997678757,
+      "checkpoint": {
+        "config": {
+          "checkpoint": "results_elbo/matched/model.pt",
+          "out": "results_elbo/curved_matched",
+          "epochs": 100,
+          "seed": 27
+        },
+        "scale": 0.0,
+        "selected_epoch": 100,
+        "val_loss": 349.4485078125,
+        "train_seed": 7101,
+        "validation_seed": 7102,
+        "objective": "ordinary ELBO, analytic unit-Jacobian curved posterior KL; no labels/teacher"
+      }
+    }
+  },
+  "constant_sir_grid": [
+    {
+      "size": 501,
+      "span": 5.0,
+      "metrics": {
+        "beta": {
+          "corr": 0.9795290835184303,
+          "rmse": 0.018053386087929096,
+          "bias": 0.0009425015483948234,
+          "cover90": 0.8859999999999999
+        },
+        "alpha": {
+          "corr": 0.8790176568123618,
+          "rmse": 0.020307330474955858,
+          "bias": 0.0010212549879899384,
+          "cover90": 0.8879999999999999
+        },
+        "R0": {
+          "corr": 0.9776253360447547,
+          "rmse": 0.12666067014477023,
+          "bias": -0.0044210129922457545,
+          "cover90": 0.889
+        }
+      },
+      "max_boundary_mass": 8.46094812829952e-05
+    },
+    {
+      "size": 751,
+      "span": 6.0,
+      "metrics": {
+        "beta": {
+          "corr": 0.979529070296679,
+          "rmse": 0.018053392197324422,
+          "bias": 0.0009425046963131589,
+          "cover90": 0.881
+        },
+        "alpha": {
+          "corr": 0.8790179343662055,
+          "rmse": 0.020307314303940376,
+          "bias": 0.0010212731216925578,
+          "cover90": 0.8879999999999999
+        },
+        "R0": {
+          "corr": 0.9776250012815597,
+          "rmse": 0.12666152115873872,
+          "bias": -0.004420640619264788,
+          "cover90": 0.8879999999999999
+        }
+      },
+      "max_boundary_mass": 4.017067835595986e-08,
+      "max_mean_change": 0.00033688299021283896
+    }
+  ]
+}

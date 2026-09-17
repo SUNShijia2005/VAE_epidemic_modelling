@@ -1,0 +1,248 @@
+{
+  "test_seed": 9103,
+  "n_test": 1000,
+  "inference": "One encoder pass, exact lognormal marginal summaries; no optimization, sampling or labels.",
+  "fixed_rho": 0.1,
+  "fixed_k": 10.0,
+  "models": {
+    "matched": {
+      "metrics": {
+        "beta": {
+          "corr": 0.9825673215925462,
+          "rmse": 0.01689762994647026,
+          "bias": -0.0007969765574671328,
+          "cover90": 0.869
+        },
+        "alpha": {
+          "corr": 0.8845110256056765,
+          "rmse": 0.01913101226091385,
+          "bias": -0.0008342564688064158,
+          "cover90": 0.868
+        },
+        "R0": {
+          "corr": 0.981096843952966,
+          "rmse": 0.11952683329582214,
+          "bias": 0.00019213389896322042,
+          "cover90": 0.873
+        }
+      },
+      "checkpoint": {
+        "config": {
+          "scale": 0.0,
+          "n_train": 8000,
+          "epochs": 160,
+          "draws": 4,
+          "seed": 7,
+          "out": "results_elbo/matched"
+        },
+        "train_seed": 7101,
+        "validation_seed": 7102,
+        "selected_epoch": 156,
+        "val_loss": 349.4972036132813,
+        "objective": "ordinary ELBO with antithetic MC; no labels or teacher"
+      },
+      "checkpoint_sha256": "73ba1fcc3737ac2867e0f6c09ec2859ad60d7e35cd89236929ec61939b7b4669",
+      "mean_abs_log_beta_correction": 0.0,
+      "joint_beta_alpha_cover90": 0.859000027179718,
+      "alpha_calibration": {
+        "0.5": 0.4560000002384186,
+        "0.8": 0.7739999890327454,
+        "0.9": 0.8679999709129333,
+        "0.95": 0.9240000247955322
+      }
+    },
+    "hybrid": {
+      "metrics": {
+        "beta": {
+          "corr": 0.9827625957540997,
+          "rmse": 0.01679840311408043,
+          "bias": -0.0005876029026694596,
+          "cover90": 0.871
+        },
+        "alpha": {
+          "corr": 0.8846732082500552,
+          "rmse": 0.019116459414362907,
+          "bias": -0.0006609921110793948,
+          "cover90": 0.864
+        },
+        "R0": {
+          "corr": 0.9809758053873334,
+          "rmse": 0.11998562514781952,
+          "bias": -0.0015842616558074951,
+          "cover90": 0.868
+        }
+      },
+      "checkpoint": {
+        "config": {
+          "scale": 0.5,
+          "n_train": 8000,
+          "epochs": 160,
+          "draws": 4,
+          "seed": 7,
+          "out": "results_elbo/hybrid"
+        },
+        "train_seed": 7101,
+        "validation_seed": 7102,
+        "selected_epoch": 160,
+        "val_loss": 349.50099658203123,
+        "objective": "ordinary ELBO with antithetic MC; no labels or teacher"
+      },
+      "checkpoint_sha256": "1e06b95c3ee9dbdbee26b6b4465eeb58c129449afd2254cbd8f62d37f7b896d7",
+      "mean_abs_log_beta_correction": 0.0008551027858629823,
+      "joint_beta_alpha_cover90": 0.859000027179718,
+      "alpha_calibration": {
+        "0.5": 0.4480000138282776,
+        "0.8": 0.7649999856948853,
+        "0.9": 0.8640000224113464,
+        "0.95": 0.9269999861717224
+      }
+    },
+    "cnn_control": {
+      "metrics": {
+        "beta": {
+          "corr": 0.9805872300557437,
+          "rmse": 0.017811788246035576,
+          "bias": -0.0003163815999869257,
+          "cover90": 0.841
+        },
+        "alpha": {
+          "corr": 0.8719384933866382,
+          "rmse": 0.02004850283265114,
+          "bias": -0.0002494737273082137,
+          "cover90": 0.832
+        },
+        "R0": {
+          "corr": 0.9763806147234082,
+          "rmse": 0.13368737697601318,
+          "bias": -0.004709939938038588,
+          "cover90": 0.838
+        }
+      },
+      "checkpoint": {
+        "config": {
+          "scale": 0.5,
+          "encoder": "cnn",
+          "n_train": 8000,
+          "epochs": 160,
+          "draws": 4,
+          "seed": 7,
+          "out": "results_elbo/cnn_control"
+        },
+        "train_seed": 7101,
+        "validation_seed": 7102,
+        "selected_epoch": 160,
+        "val_loss": 349.5115244140625,
+        "objective": "ordinary ELBO with antithetic MC; no labels or teacher"
+      },
+      "checkpoint_sha256": "391b13e6b05c2f833fc4b0ee99ea094ac5e263f4990981fd1fae80655c1e4715",
+      "mean_abs_log_beta_correction": 0.0005286820232868195,
+      "joint_beta_alpha_cover90": 0.8560000061988831,
+      "alpha_calibration": {
+        "0.5": 0.43799999356269836,
+        "0.8": 0.7379999756813049,
+        "0.9": 0.8320000171661377,
+        "0.95": 0.9089999794960022
+      }
+    },
+    "hybrid_seed17": {
+      "metrics": {
+        "beta": {
+          "corr": 0.9826398699404617,
+          "rmse": 0.016868818551301956,
+          "bias": -0.0007840865873731673,
+          "cover90": 0.868
+        },
+        "alpha": {
+          "corr": 0.8842040584727171,
+          "rmse": 0.019174113869667053,
+          "bias": -0.00087091134628281,
+          "cover90": 0.871
+        },
+        "R0": {
+          "corr": 0.9807279524665815,
+          "rmse": 0.12075541168451309,
+          "bias": -0.0014111483469605446,
+          "cover90": 0.869
+        }
+      },
+      "checkpoint": {
+        "config": {
+          "scale": 0.5,
+          "encoder": "mlp",
+          "n_train": 8000,
+          "epochs": 160,
+          "draws": 4,
+          "seed": 17,
+          "out": "results_elbo/hybrid_seed17"
+        },
+        "train_seed": 7101,
+        "validation_seed": 7102,
+        "selected_epoch": 156,
+        "val_loss": 349.49769970703124,
+        "objective": "ordinary ELBO with antithetic MC; no labels or teacher"
+      },
+      "checkpoint_sha256": "e4a493933a4b87dde6aac0fd2eb5b793dd396a87fc5ed405d95b29e0f49b9842",
+      "mean_abs_log_beta_correction": 0.0007270333589985967,
+      "joint_beta_alpha_cover90": 0.8600000143051147,
+      "alpha_calibration": {
+        "0.5": 0.44699999690055847,
+        "0.8": 0.7559999823570251,
+        "0.9": 0.8709999918937683,
+        "0.95": 0.9190000295639038
+      }
+    }
+  },
+  "constant_sir_grid": [
+    {
+      "size": 501,
+      "span": 5.0,
+      "metrics": {
+        "beta": {
+          "corr": 0.9836393940650898,
+          "rmse": 0.016377539380364188,
+          "bias": -0.00047025770102426345,
+          "cover90": 0.896
+        },
+        "alpha": {
+          "corr": 0.8926491661244293,
+          "rmse": 0.018450142029591218,
+          "bias": -0.0004514764728882178,
+          "cover90": 0.897
+        },
+        "R0": {
+          "corr": 0.9812946765662908,
+          "rmse": 0.11890089760248478,
+          "bias": -6.244933766895988e-05,
+          "cover90": 0.898
+        }
+      },
+      "max_boundary_mass": 7.425610842936461e-05
+    },
+    {
+      "size": 751,
+      "span": 6.0,
+      "metrics": {
+        "beta": {
+          "corr": 0.9836394078460958,
+          "rmse": 0.016377531301528213,
+          "bias": -0.00047025868169292805,
+          "cover90": 0.891
+        },
+        "alpha": {
+          "corr": 0.8926491925106039,
+          "rmse": 0.018450135737529516,
+          "bias": -0.00045146796038257733,
+          "cover90": 0.9
+        },
+        "R0": {
+          "corr": 0.9812941835900345,
+          "rmse": 0.1189024586111005,
+          "bias": -6.195933117212027e-05,
+          "cover90": 0.897
+        }
+      },
+      "max_boundary_mass": 4.48586348557691e-08,
+      "max_mean_change": 0.00033467712948853645
+    }
+  ]
+}

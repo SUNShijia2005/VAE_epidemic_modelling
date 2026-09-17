@@ -1,0 +1,20 @@
+{
+  "criterion": "validation ELBO only, no true labels or posterior reference",
+  "selected": "curved_hybrid",
+  "candidates": {
+    "curved_hybrid": {
+      "val_loss": 349.47459228515623,
+      "epoch": 81
+    },
+    "continued_gaussian": {
+      "val_loss": 349.508169921875,
+      "epoch": 100
+    },
+    "cumulative_gaussian": {
+      "val_loss": 349.50338232421876,
+      "epoch": 100
+    }
+  },
+  "test_seed": 10103,
+  "n_test": 1000
+}

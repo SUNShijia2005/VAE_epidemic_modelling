@@ -1,0 +1,200 @@
+[
+  {
+    "epoch": 1,
+    "train_elbo_loss": 1154.359197265625,
+    "val_elbo_loss": 481.369560546875,
+    "seconds": 3.970684766769409
+  },
+  {
+    "epoch": 6,
+    "train_elbo_loss": 392.18546411132814,
+    "val_elbo_loss": 387.8029252929687,
+    "seconds": 26.297414779663086
+  },
+  {
+    "epoch": 11,
+    "train_elbo_loss": 359.82820703125,
+    "val_elbo_loss": 354.18248657226565,
+    "seconds": 45.50721192359924
+  },
+  {
+    "epoch": 16,
+    "train_elbo_loss": 362.3321240234375,
+    "val_elbo_loss": 361.51490454101565,
+    "seconds": 63.960378885269165
+  },
+  {
+    "epoch": 21,
+    "train_elbo_loss": 356.52445263671876,
+    "val_elbo_loss": 354.536951171875,
+    "seconds": 82.26461791992188
+  },
+  {
+    "epoch": 26,
+    "train_elbo_loss": 354.63456494140627,
+    "val_elbo_loss": 351.85444580078126,
+    "seconds": 103.85747599601746
+  },
+  {
+    "epoch": 31,
+    "train_elbo_loss": 354.62227294921877,
+    "val_elbo_loss": 351.93300756835936,
+    "seconds": 124.13384795188904
+  },
+  {
+    "epoch": 36,
+    "train_elbo_loss": 353.5930283203125,
+    "val_elbo_loss": 352.33346337890623,
+    "seconds": 143.7932426929474
+  },
+  {
+    "epoch": 41,
+    "train_elbo_loss": 353.4181706542969,
+    "val_elbo_loss": 351.24082543945315,
+    "seconds": 161.95136404037476
+  },
+  {
+    "epoch": 46,
+    "train_elbo_loss": 353.173365234375,
+    "val_elbo_loss": 350.3454860839844,
+    "seconds": 183.24615502357483
+  },
+  {
+    "epoch": 51,
+    "train_elbo_loss": 352.6019831542969,
+    "val_elbo_loss": 350.17978051757814,
+    "seconds": 202.16434407234192
+  },
+  {
+    "epoch": 56,
+    "train_elbo_loss": 352.382640625,
+    "val_elbo_loss": 350.0375134277344,
+    "seconds": 221.71235179901123
+  },
+  {
+    "epoch": 61,
+    "train_elbo_loss": 352.5743781738281,
+    "val_elbo_loss": 350.28876684570315,
+    "seconds": 241.39741206169128
+  },
+  {
+    "epoch": 66,
+    "train_elbo_loss": 352.2215617675781,
+    "val_elbo_loss": 349.99877221679685,
+    "seconds": 261.042249917984
+  },
+  {
+    "epoch": 71,
+    "train_elbo_loss": 352.27356762695314,
+    "val_elbo_loss": 349.8448898925781,
+    "seconds": 281.5284209251404
+  },
+  {
+    "epoch": 76,
+    "train_elbo_loss": 352.1386376953125,
+    "val_elbo_loss": 349.68889916992185,
+    "seconds": 303.21638584136963
+  },
+  {
+    "epoch": 81,
+    "train_elbo_loss": 352.1574860839844,
+    "val_elbo_loss": 349.89545629882815,
+    "seconds": 324.89245104789734
+  },
+  {
+    "epoch": 86,
+    "train_elbo_loss": 352.0924926757813,
+    "val_elbo_loss": 349.6410437011719,
+    "seconds": 343.8459780216217
+  },
+  {
+    "epoch": 91,
+    "train_elbo_loss": 351.97223388671875,
+    "val_elbo_loss": 349.6553645019531,
+    "seconds": 363.7357108592987
+  },
+  {
+    "epoch": 96,
+    "train_elbo_loss": 351.9675908203125,
+    "val_elbo_loss": 349.6620009765625,
+    "seconds": 381.9640209674835
+  },
+  {
+    "epoch": 101,
+    "train_elbo_loss": 351.895158203125,
+    "val_elbo_loss": 349.7693774414063,
+    "seconds": 400.4389579296112
+  },
+  {
+    "epoch": 106,
+    "train_elbo_loss": 352.01446923828127,
+    "val_elbo_loss": 349.6172766113281,
+    "seconds": 416.6337089538574
+  },
+  {
+    "epoch": 111,
+    "train_elbo_loss": 351.88770361328125,
+    "val_elbo_loss": 349.660556640625,
+    "seconds": 431.759968996048
+  },
+  {
+    "epoch": 116,
+    "train_elbo_loss": 351.85583984375,
+    "val_elbo_loss": 349.6225947265625,
+    "seconds": 448.41564202308655
+  },
+  {
+    "epoch": 121,
+    "train_elbo_loss": 351.8403369140625,
+    "val_elbo_loss": 349.57839379882813,
+    "seconds": 464.3658390045166
+  },
+  {
+    "epoch": 126,
+    "train_elbo_loss": 351.83015625,
+    "val_elbo_loss": 349.5453569335937,
+    "seconds": 479.89953994750977
+  },
+  {
+    "epoch": 131,
+    "train_elbo_loss": 351.8214201660156,
+    "val_elbo_loss": 349.5475715332031,
+    "seconds": 495.7434618473053
+  },
+  {
+    "epoch": 136,
+    "train_elbo_loss": 351.79712646484376,
+    "val_elbo_loss": 349.5411572265625,
+    "seconds": 511.88576793670654
+  },
+  {
+    "epoch": 141,
+    "train_elbo_loss": 351.821537109375,
+    "val_elbo_loss": 349.5195319824219,
+    "seconds": 527.9402599334717
+  },
+  {
+    "epoch": 146,
+    "train_elbo_loss": 351.8026696777344,
+    "val_elbo_loss": 349.5158229980469,
+    "seconds": 543.1415069103241
+  },
+  {
+    "epoch": 151,
+    "train_elbo_loss": 351.7843286132813,
+    "val_elbo_loss": 349.5136962890625,
+    "seconds": 558.8537178039551
+  },
+  {
+    "epoch": 156,
+    "train_elbo_loss": 351.80436694335935,
+    "val_elbo_loss": 349.5164951171875,
+    "seconds": 578.3416929244995
+  },
+  {
+    "epoch": 160,
+    "train_elbo_loss": 351.7962333984375,
+    "val_elbo_loss": 349.5115244140625,
+    "seconds": 592.5204999446869
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "checkpoint_sha256": "b362aa8060623a55f9bfa0aa99b19bd4ca9692af193dc9049b08687c3917f82b",
+  "torch_version": "2.12.1",
+  "selected": "curved",
+  "scores": {
+    "curved": {
+      "mean_validation_elbo": 349.46506518554685,
+      "replicates": [
+        349.477296875,
+        349.4757839355469,
+        349.45602075195313,
+        349.4656713867187,
+        349.45055297851565
+      ]
+    },
+    "mixture": {
+      "mean_validation_elbo": 349.46761406250005,
+      "replicates": [
+        349.4665515136719,
+        349.46653857421876,
+        349.4695400390625,
+        349.4687817382812,
+        349.4666584472656
+      ]
+    }
+  },
+  "checkpoint": "results_elbo/curved_hybrid/model.pt",
+  "test_seed": 11103,
+  "n_test": 1000,
+  "criterion": "Mean observation-only validation ELBO over five fixed random streams; 32 total likelihood samples each."
+}
